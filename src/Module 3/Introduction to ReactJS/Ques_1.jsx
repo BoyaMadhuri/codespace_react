@@ -8,9 +8,8 @@
 function Ques_1() {
 
   return (
-    <>
-      {/* Add your component here */}
-    </>
+      <div>Hello, React!</div>
+    
   )
 }
 
