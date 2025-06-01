@@ -1,13 +1,11 @@
 import React from 'react';
-import SimpleForm from './Module 4/Advanced React Concepts/Forms/SimpleForm';
+import MultistepForm from './Module 4/Advanced React Concepts/Forms/MultistepForm';
 
-const App = () => {
-  return (
-    <div>
-      <h1 style={{ textAlign: 'center' }}>Simple Controlled Form</h1>
-      <SimpleForm />
-    </div>
-  );
-};
+const App = () => (
+  <div>
+    <h1>Multi-step Form Example</h1>
+    <MultistepForm />
+  </div>
+);
 
 export default App;
