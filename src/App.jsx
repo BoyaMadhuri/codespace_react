@@ -1,35 +1,23 @@
-import React, { Component } from 'react';
-import ParentComponent from './Module 4/Advanced React Concepts/Optimizing Performance with React Memoization/ParentComponent';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './Module 4/Hands-on Project - Build a Full-Stack Todo App/components/Navbar';
+import Home from './Module 4/Hands-on Project - Build a Full-Stack Todo App/pages/Home';
+import About from './Module 4/Hands-on Project - Build a Full-Stack Todo App/pages/About';
+import Contact from './Module 4/Hands-on Project - Build a Full-Stack Todo App/pages/Contact';
+import TodosPage from './Module 4/Hands-on Project - Build a Full-Stack Todo App/pages/TodosPage';
 
-// Simple Error Boundary Component
-class ErrorBoundary extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
-  static getDerivedStateFromError(error) {
-    return { hasError: true };
-  }
-  componentDidCatch(error, errorInfo) {
-    console.error("Error caught in ErrorBoundary:", error, errorInfo);
-  }
-  render() {
-    if (this.state.hasError) {
-      return <h2>Something went wrong while rendering the component.</h2>;
-    }
-    return this.props.children;
-  }
-}
-
-const App = () => {
+function App() {
   return (
-    <div>
-      <h1>React Memoization Demo</h1>
-      <ErrorBoundary>
-        <ParentComponent />
-      </ErrorBoundary>
-    </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/todos" element={<TodosPage />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </Router>
   );
-};
+}
 
 export default App;
