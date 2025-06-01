@@ -1,6 +1,29 @@
-// Conditional Rendering
-// Description: Implement a component that renders different messages based on a passed isLoggedIn prop.
+import React from "react";
+import PropTypes from "prop-types";
 
-// Step 1: Write your code within the file, by the name of component as LoginMessage
-// Step 2: Modify the App.js to use LoginMessage with a boolean prop
+const Greeting = ({ isLoggedIn }) => {
+  return (
+    <div>
+      {isLoggedIn ? (
+        <h2>Welcome back, user!</h2>
+      ) : (
+        <h2>Please log in to continue.</h2>
+      )}
+    </div>
+  );
+};
 
+Greeting.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+};
+
+const Ques_6 = () => {
+  return (
+    <div>
+      <Greeting isLoggedIn={true} />
+      <Greeting isLoggedIn={false} />
+    </div>
+  );
+};
+
+export default Ques_6;
