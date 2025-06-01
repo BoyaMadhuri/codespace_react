@@ -1,41 +1,33 @@
-// Local Storage with useEffect and useState
-// Description: Create a component where the user's input is saved in local storage and persists after page reload.
-
-// Steps to needed:
-//     - useState(() => {...}) : Initializes the input with local storage value.
-//     - useEffect([input]) : Updates local storage each time input changes.
-//     - Write your code within the file, by the name of component as Local_Storage.
 import React, { useState, useEffect } from 'react';
 
-function Ques_10_Local_Storage() {
-  const [input, setInput] = useState('');
+const Ques_10_Local_Storage = () => {
+  const [inputValue, setInputValue] = useState(() => {
+    // Initialize state from localStorage, or fallback to empty string
+    return localStorage.getItem('inputValue') || '';
+  });
 
-  // Load saved input from localStorage when component mounts
   useEffect(() => {
-    const savedInput = localStorage.getItem('userInput');
-    if (savedInput) {
-      setInput(savedInput);
-    }
-  }, []);
+    // Sync localStorage whenever inputValue changes
+    localStorage.setItem('inputValue', inputValue);
+  }, [inputValue]);
 
-  // Save input to localStorage whenever it changes
-  useEffect(() => {
-    localStorage.setItem('userInput', input);
-  }, [input]);
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
+  };
 
   return (
-    <div style={{ fontFamily: 'Arial', padding: 20 }}>
-      <h2>Persistent Input with Local Storage</h2>
+    <div style={{ padding: '1rem', fontFamily: 'Arial, sans-serif' }}>
+      <h3>Persistent Text Input</h3>
       <input
         type="text"
-        value={input}
-        onChange={e => setInput(e.target.value)}
-        placeholder="Type something..."
-        style={{ padding: 8, fontSize: 16, width: '100%', maxWidth: 400 }}
+        value={inputValue}
+        onChange={handleChange}
+        placeholder="Enter text here"
+        style={{ padding: '0.5rem', fontSize: '1rem', width: '100%', maxWidth: 400 }}
       />
-      <p>Your input is: {input}</p>
+      <p>Current Input: {inputValue}</p>
     </div>
   );
-}
+};
 
 export default Ques_10_Local_Storage;
