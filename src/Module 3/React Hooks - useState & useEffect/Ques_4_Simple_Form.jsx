@@ -23,5 +23,27 @@ function Ques_4_Simple_Form() {
     }
   }, [name]);
 
-  return (
+   return (
     <div style={{ textAlign: 'center', marginTop: '50px' }}>
+      <h2>Simple Form</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Enter your name"
+          style={{ padding: '10px', fontSize: '16px', width: '60%' }}
+        />
+        <br /><br />
+        <button 
+          type="submit" 
+          style={{ padding: '10px 20px', fontSize: '16px' }}
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  );
+}
+
+export default Ques_4_Simple_Form;
