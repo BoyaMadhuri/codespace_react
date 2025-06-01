@@ -1,6 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
+// Passing Props to Components
+// Description: Create a Profile component that receives name and age as props and displays them.
 
+// Step 1: Write your code within the file, by the name of component as Profile
+// Step 2: Update App.js to pass props to the Profile componentimport React from "react";
+
+// Profile component receives props: name and age
 const Profile = ({ name, age }) => {
   return (
     <div>
@@ -11,12 +15,7 @@ const Profile = ({ name, age }) => {
   );
 };
 
-// PropTypes validation
-Profile.propTypes = {
-  name: PropTypes.string.isRequired,
-  age: PropTypes.number.isRequired,
-};
-
+// Example usage of Profile component
 const Ques_5 = () => {
   return (
     <div>
