@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
 
-// Child component wrapped with React.memo
+// Child component wrapped with React.memo to avoid unnecessary re-renders
 const ChildComponent = React.memo(({ onClick, count }) => {
   console.log('ChildComponent rendered');
   return (
@@ -11,11 +12,16 @@ const ChildComponent = React.memo(({ onClick, count }) => {
   );
 });
 
+ChildComponent.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  count: PropTypes.number.isRequired,
+};
+
 const ParentComponent = () => {
   const [count, setCount] = useState(0);
   const [otherState, setOtherState] = useState(false);
 
-  // useCallback ensures function reference is stable across renders
+  // useCallback to memoize increment function and avoid changing reference on each render
   const increment = useCallback(() => {
     setCount(prevCount => prevCount + 1);
   }, []);
@@ -26,6 +32,7 @@ const ParentComponent = () => {
       <button onClick={() => setOtherState(!otherState)}>
         Toggle Other State
       </button>
+      {/* ChildComponent only re-renders if count or increment changes */}
       <ChildComponent onClick={increment} count={count} />
     </div>
   );
