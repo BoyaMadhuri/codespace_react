@@ -3,10 +3,14 @@ import SimpleForm from './Module 4/Advanced React Concepts/Forms/SimpleForm';
 
 const App = () => {
   return (
-    <div>
-      <h1>Simple Controlled Form</h1>
-      <SimpleForm />
-    </div>
+    <main style={{ maxWidth: '600px', margin: '2rem auto', fontFamily: 'Arial, sans-serif' }}>
+      <header>
+        <h1 style={{ textAlign: 'center', color: '#333' }}>Simple Controlled Form</h1>
+      </header>
+      <section>
+        <SimpleForm />
+      </section>
+    </main>
   );
 };
 
