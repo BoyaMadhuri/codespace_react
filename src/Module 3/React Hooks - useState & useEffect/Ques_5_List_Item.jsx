@@ -1,23 +1,26 @@
-// List Items Input and Display
-// Description: Build a component that allows users to enter items into a list. Each new item should be added when the "Add" button is clicked, and displayed on the page.
-
-// Steps:
-//     - Write your code within the file, by the name of component as List_Item
 import React, { useState } from 'react';
 
 function Ques_5_List_Item() {
-  const [item, setItem] = useState('');       // Input value
-  const [items, setItems] = useState([]);     // List of items
+  const [currentItem, setCurrentItem] = useState('');       // Input value
+  const [items, setItems] = useState([]);                   // List of { id, value }
 
-  // Function to add the current item to the list
   const handleAdd = () => {
-    const trimmedItem = item.trim();
-    if (trimmedItem) {
-      setItems([...items, trimmedItem]); // Add new item
-      setItem(''); // Clear input field
-    } else {
+    const trimmedItem = currentItem.trim();
+
+    if (!trimmedItem) {
       alert("Please enter a valid item.");
+      return;
     }
+
+    // Check for duplicates
+    if (items.some(({ value }) => value.toLowerCase() === trimmedItem.toLowerCase())) {
+      alert("This item is already in the list.");
+      return;
+    }
+
+    // Add new item with unique id (timestamp)
+    setItems([...items, { id: Date.now(), value: trimmedItem }]);
+    setCurrentItem('');
   };
 
   return (
@@ -25,8 +28,8 @@ function Ques_5_List_Item() {
       <h2>Item List</h2>
       <input
         type="text"
-        value={item}
-        onChange={(e) => setItem(e.target.value)}
+        value={currentItem}
+        onChange={(e) => setCurrentItem(e.target.value)}
         placeholder="Enter item"
         style={{ padding: '10px', fontSize: '16px', width: '60%' }}
       />
@@ -39,9 +42,9 @@ function Ques_5_List_Item() {
       </button>
 
       <ul style={{ marginTop: '30px', listStyleType: 'none', padding: 0 }}>
-        {items.map((it, index) => (
-          <li key={index} style={{ fontSize: '18px', margin: '10px 0' }}>
-            {it}
+        {items.map(({ id, value }) => (
+          <li key={id} style={{ fontSize: '18px', margin: '10px 0' }}>
+            {value}
           </li>
         ))}
       </ul>
