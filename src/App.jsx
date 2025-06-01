@@ -1,15 +1,12 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import store from './store';
-import Todos from './Module 4/Redux Toolkit - State Management in React/Todos_Redux/Todos';
+import SimpleForm from './Module 4/Advanced React Concepts/Forms/SimpleForm';
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <div>
-        <Todos />
-      </div>
-    </Provider>
+    <div>
+      <h1>Simple Controlled Form</h1>
+      <SimpleForm />
+    </div>
   );
 };
 
