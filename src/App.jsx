@@ -4,7 +4,7 @@ import FetchData from './Module 4/Advanced React Concepts/Fetching Data Using Fe
 const App = () => {
   return (
     <div>
-      <h1>Fetch API Data Example</h1>
+      <h1>React Fetch API Example</h1>
       <FetchData />
     </div>
   );
